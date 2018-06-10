@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	setPath     = "set"
-	getPath     = "get"
-	commandPath = "command"
-	statusPath  = "status"
-	connectPath = "connect"
+	setPath       = "set"
+	getPath       = "get"
+	commandPath   = "command"
+	statusPath    = "status"
+	connectedPath = "connected"
 
 	statusPathComplete = "/" + statusPath + "/"
 )
@@ -59,8 +59,8 @@ func PayloadToValue(data []byte) Value {
 
 func DefaultMQTTClientOptions() *mqtt.ClientOptions {
 	return mqtt.NewClientOptions().
-		SetKeepAlive(5 * time.Second).
-		SetAutoReconnect(true)
+		SetAutoReconnect(true).
+		SetCleanSession(false)
 }
 
 type StatusMessage struct {
